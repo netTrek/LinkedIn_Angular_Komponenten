@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import {User} from '../user';
 
 @Component ( {
@@ -8,6 +8,9 @@ import {User} from '../user';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class UserListComponent implements OnInit {
+
+  @Output ()
+  selectUsr: EventEmitter<User> = new EventEmitter ();
 
   users: User[] = [
     { name: 'Frank Müller', age: 12},
@@ -23,5 +26,6 @@ export class UserListComponent implements OnInit {
 
   onSelectedUsr ( selectedUsr: User) {
     this.selectedUsr = selectedUsr;
+    this.selectUsr.emit( this.selectedUsr );
   }
 }
