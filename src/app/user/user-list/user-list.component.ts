@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, Output, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { User } from '../user';
-import { UserNameComponent } from '../user-name/user-name.component';
 
 @Component ( {
   selector     : 'in-user-list',
@@ -8,13 +7,10 @@ import { UserNameComponent } from '../user-name/user-name.component';
   styleUrls    : [ './user-list.component.scss' ],
   encapsulation: ViewEncapsulation.Emulated
 } )
-export class UserListComponent implements OnInit, AfterViewInit {
+export class UserListComponent implements OnInit {
 
   @Output ()
   selectUsr: EventEmitter<User> = new EventEmitter ();
-
-  @ViewChildren ( UserNameComponent )
-  userNames: QueryList<UserNameComponent>;
 
   users: User[] = [
     { name: 'Frank Müller', age: 12 },
@@ -32,17 +28,8 @@ export class UserListComponent implements OnInit, AfterViewInit {
   }
 
   onSelectedUsr ( selectedUsr: User ) {
-    // this.selectedUsr = selectedUsr;
-    // this.selectUsr.emit ( this.selectedUsr );
-    // this.users.pop();
-    this.users.push( {age: 44, name: 'Saban Ünlü'});
+    this.selectedUsr = selectedUsr;
+    this.selectUsr.emit ( this.selectedUsr );
   }
 
-  ngAfterViewInit (): void {
-    this.userNames.changes.subscribe(
-      next => {
-        console.log ( next );
-      }
-    );
-  }
 }
