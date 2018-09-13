@@ -1,4 +1,4 @@
-<h3>User List</h3>
+<h3>User List <ng-content select="span.title"></ng-content></h3>
 <ng-content></ng-content>
 <in-user-name *ngFor="let user of users; even as e"
               [user]="user"
