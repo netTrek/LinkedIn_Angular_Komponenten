@@ -1,0 +1,8 @@
+<h3>User List</h3>
+
+<in-user-name *ngFor="let user of users; even as e"
+              [user]="user"
+              [isSelected]="selectedUsr===user"
+              [ngClass]="{even: e}"
+              (selectUsr)="onSelectedUsr ( $event )"
+></in-user-name>
