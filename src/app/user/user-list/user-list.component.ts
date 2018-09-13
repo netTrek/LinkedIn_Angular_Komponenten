@@ -1,7 +1,18 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output, QueryList,
+  ViewEncapsulation
+} from '@angular/core';
 import { User } from '../user';
 import { UserListHeaderComponent } from './user-list-header/user-list-header.component';
 import { UserListSubHeaderComponent } from './user-list-sub-header/user-list-sub-header.component';
+import { UserListInfoComponent } from './user-list-info/user-list-info.component';
 
 @Component ( {
   selector     : 'in-user-list',
@@ -19,6 +30,12 @@ export class UserListComponent implements OnInit, AfterContentInit {
 
   @ContentChild ( UserListSubHeaderComponent )
   subHeader: UserListSubHeaderComponent;
+
+  @ContentChild ( UserListInfoComponent )
+  info: UserListInfoComponent;
+
+  @ContentChildren ( UserListInfoComponent )
+  infos: QueryList<UserListInfoComponent>;
 
   @Output ()
   selectUsr: EventEmitter<User> = new EventEmitter ();
@@ -44,7 +61,20 @@ export class UserListComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit (): void {
-    console.log ( this.header, this.subHeader, this.headerRef.nativeElement );
+    console.log ( this.header,
+      this.subHeader,
+      this.headerRef.nativeElement,
+      this.info,
+      this.infos,
+      this.infos.toArray()
+    );
+
+    this.infos.changes.subscribe(
+      next => {
+        console.log ( next );
+      }
+    );
+
   }
 
 }
