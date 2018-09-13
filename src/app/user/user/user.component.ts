@@ -15,6 +15,9 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild ( UserListComponent, { read: ElementRef } )
   userListRef: ElementRef;
 
+  @ViewChild ( 'helloWorld' )
+  paragraphElementRef: ElementRef<HTMLParagraphElement;
+
   private selectionSub: Subscription;
 
   constructor ( private renderer: Renderer2 ) {
@@ -28,7 +31,9 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
       next => console.log ( 'selected', next )
     );
 
-    this.renderer.setStyle ( this.userListRef.nativeElement, 'color', 'red' );
+    console.log ( this.paragraphElementRef );
+
+    this.renderer.setStyle ( this.paragraphElementRef.nativeElement, 'color', 'red' );
   }
 
   ngOnDestroy (): void {
