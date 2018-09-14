@@ -1,0 +1,13 @@
+:host {
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    in-default, in-push {
+      flex: 1 0 0;
+      display: block;
+      background-color: #009fe3;
+    }
+  }
+}
