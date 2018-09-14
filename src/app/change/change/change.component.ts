@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { Subscription } from 'rxjs/internal/Subscription';
 import { interval } from 'rxjs/internal/observable/interval';
 import { take } from 'rxjs/operators';
+import { ChangeService } from '../change.service';
 
 @Component({
   selector: 'in-change',
@@ -14,18 +15,12 @@ export class ChangeComponent implements OnInit, OnDestroy {
   count: number;
   private sub: Subscription;
 
-  constructor ( private cdr: ChangeDetectorRef ) {
+  constructor ( public cs: ChangeService ) {
   }
 
   ngOnInit () {
-    this.sub = interval ( 500 )
-      .pipe (
-        take ( 8 )
-      )
-      .subscribe ( next => {
-        // console.log ( next );
+    this.sub = this.cs.count$.subscribe ( next => {
         this.count = next;
-        this.cdr.detectChanges();
       } );
   }
 

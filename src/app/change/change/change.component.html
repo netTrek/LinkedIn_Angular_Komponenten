@@ -4,5 +4,5 @@
 count:= {{count}}
 <div>
   <in-default></in-default>
-  <in-push></in-push>
+  <in-push [count]="cs.count$ | async"></in-push>
 </div>
