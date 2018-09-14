@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChild, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ContentChild, EmbeddedViewRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { AddressDirective } from '../../address.directive';
 
 @Component ( {
@@ -6,24 +6,27 @@ import { AddressDirective } from '../../address.directive';
   templateUrl: './template-base.component.html',
   styleUrls  : [ './template-base.component.scss' ]
 } )
-export class TemplateBaseComponent implements OnInit, AfterViewInit {
+export class TemplateBaseComponent implements OnInit {
 
-  @ContentChild ( AddressDirective, {read: TemplateRef} )
+  @ContentChild ( AddressDirective, { read: TemplateRef } )
   myTemp: TemplateRef<any>;
 
-  @ViewChild ( TemplateRef, {read: ViewContainerRef } )
-  viewContainerRef: ViewContainerRef
+  @ViewChild ( TemplateRef, { read: ViewContainerRef } )
+  viewContainerRef: ViewContainerRef;
 
   myContext = { $implicit: 'Deutschland', name: 'Peter Mülller' };
 
-  constructor (  ) {
+  constructor () {
   }
 
   ngOnInit () {
-  }
+    this.viewContainerRef.createEmbeddedView ( this.myTemp, this.myContext );
 
-  ngAfterViewInit (): void {
-    this.viewContainerRef.createEmbeddedView( this.myTemp, this.myContext );
+    const viewRef: EmbeddedViewRef<any> = this.myTemp.createEmbeddedView ( {
+      $implicit: 'USA', name: 'Saban Ünlü'
+    } );
+    this.viewContainerRef.insert ( viewRef );
+
   }
 
 }
