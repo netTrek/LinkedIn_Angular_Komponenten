@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } 
 export class PushComponent implements OnInit {
 
   @Input()
-  count: number;
+  list: number[];
 
   constructor ( private cdr: ChangeDetectorRef ) {
   }
