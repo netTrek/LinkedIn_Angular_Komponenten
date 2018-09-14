@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ContentChild, OnInit, TemplateRef } from '@angular/core';
 
 @Component ( {
   selector   : 'in-template-base',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls  : [ './template-base.component.scss' ]
 } )
 export class TemplateBaseComponent implements OnInit {
+
+  @ContentChild (TemplateRef )
+  myTemp: TemplateRef<HTMLElement>;
 
   myContext = { $implicit: 'Hello World!', name: 'Saban Ünlü' };
 
