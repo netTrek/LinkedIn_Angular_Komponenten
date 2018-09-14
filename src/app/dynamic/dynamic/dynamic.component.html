@@ -4,9 +4,19 @@
 
 <in-template-base>
 
+  <div *inAddress="let msg; name as myname">
+    {{myname}} <br>
+    Dorsten <br>
+    {{msg}}
+  </div>
+
+
+
+<!--
   <ng-template let-myname="name" let-msg>
     {{myname}}
     <p>{{msg}}</p>
   </ng-template>
+  -->
 
 </in-template-base>
