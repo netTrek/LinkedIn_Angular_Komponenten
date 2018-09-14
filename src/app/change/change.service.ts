@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 })
 export class ChangeService {
 
-  count$ = interval( 5000 ).pipe( take( 8 ));
+  count$ = interval( 500 ).pipe( take( 8 ))
 
   constructor() { }
 }
