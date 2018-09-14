@@ -1,0 +1,7 @@
+
+<ng-template #myTemp let-myname="name" let-msg>
+  {{myname}}
+  <p>{{msg}}</p>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="myTemp; context: myContext"></ng-container>

@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { DynamicModule } from './dynamic/dynamic.module';
 registerLocaleData( localeDe, 'de' );
 
 @NgModule ( {
@@ -14,7 +15,8 @@ registerLocaleData( localeDe, 'de' );
   ],
   imports     : [
     BrowserModule,
-    UserModule
+    UserModule,
+    DynamicModule
   ],
   providers   : [
     {provide: LOCALE_ID, useValue: 'de'}
