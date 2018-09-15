@@ -2,6 +2,8 @@
 <ng-content select="in-user-list-sub-header"></ng-content>
 <ng-content select="in-user-list-info"></ng-content>
 
+<h4>{{userList.myServiceValue}}</h4>
+
 <in-user-name-derivative *ngFor="let user of users; even as e"
               [user]="user"
               [isSelected]="selectedUsr===user"

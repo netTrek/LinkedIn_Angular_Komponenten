@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  in-user-list {
+    flex: 1 0 0;
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}

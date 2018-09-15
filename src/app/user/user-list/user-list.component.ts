@@ -1,10 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { User } from '../user';
+import { UserListService } from './user-list.service';
 
 @Component ( {
-  selector     : 'in-user-list',
-  templateUrl  : './user-list.component.html',
-  styleUrls    : [ './user-list.component.scss' ]
+  selector   : 'in-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls  : [ './user-list.component.scss' ],
+  providers  : [ UserListService ]
 } )
 export class UserListComponent implements OnInit {
 
@@ -14,13 +16,13 @@ export class UserListComponent implements OnInit {
   users: User[] = [
     { name: 'Frank Müller', age: 12 },
     { name: 'Hans Müller', age: 13 },
-    { name: 'Peter Müller', age: 14 },
-    { name: 'Paul Müller', age: 15 }
+    { name: 'Peter Müller', age: 14 }
   ];
 
   selectedUsr: User;
 
-  constructor () {
+  constructor ( public userList: UserListService ) {
+    console.log ( userList.myServiceValue );
   }
 
   ngOnInit () {
@@ -30,6 +32,5 @@ export class UserListComponent implements OnInit {
     this.selectedUsr = selectedUsr;
     this.selectUsr.emit ( this.selectedUsr );
   }
-
 
 }
