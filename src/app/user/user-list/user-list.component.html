@@ -1,6 +1,7 @@
 <ng-content select="in-user-list-header"></ng-content>
 <ng-content select="in-user-list-sub-header"></ng-content>
 <ng-content select="in-user-list-info"></ng-content>
+
 <in-user-name *ngFor="let user of users; even as e"
               [user]="user"
               [isSelected]="selectedUsr===user"
