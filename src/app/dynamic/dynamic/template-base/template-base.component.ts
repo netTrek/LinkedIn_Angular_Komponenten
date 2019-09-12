@@ -1,4 +1,5 @@
 import { Component, ContentChild, OnInit, TemplateRef } from '@angular/core';
+import { AddressDirective } from '../../address.directive';
 
 @Component ( {
   selector   : 'in-template-base',
@@ -7,9 +8,9 @@ import { Component, ContentChild, OnInit, TemplateRef } from '@angular/core';
 } )
 export class TemplateBaseComponent implements OnInit {
 
-  myContext = { $implicit: 'Hello World!', name: 'Saban Ünlü' };
+  myContext = { $implicit: 'Deutschland', name: 'Saban Ünlü' };
 
-  @ContentChild ( TemplateRef, { static: false } )
+  @ContentChild ( AddressDirective, { static: false, read: TemplateRef } )
   myTemp: TemplateRef<HTMLElement>;
 
   constructor () {
