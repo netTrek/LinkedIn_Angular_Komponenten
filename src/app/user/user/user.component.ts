@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 } )
 export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild ( UserListComponent )
+  @ViewChild(UserListComponent, { static: true })
   userList: UserListComponent;
   private selectionSub: Subscription;
 
