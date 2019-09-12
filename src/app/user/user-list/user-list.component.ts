@@ -2,6 +2,7 @@ import { AfterContentInit, Component, ContentChild, ElementRef, EventEmitter, On
 import { User } from '../user';
 import { UserListHeaderComponent } from './user-list-header/user-list-header.component';
 import { UserListSubHeaderComponent } from './user-list-sub-header/user-list-sub-header.component';
+import { UserListInfoComponent } from './user-list-info/user-list-info.component';
 
 @Component ( {
   selector     : 'in-user-list',
@@ -11,17 +12,20 @@ import { UserListSubHeaderComponent } from './user-list-sub-header/user-list-sub
 } )
 export class UserListComponent implements OnInit, AfterContentInit {
 
-  @ContentChild ( UserListHeaderComponent )
-  header: UserListHeaderComponent;
-
-  @ContentChild ( UserListHeaderComponent, {read: ElementRef} )
-  headerRef: ElementRef;
-
-  @ContentChild ( UserListSubHeaderComponent )
-  subHeader: UserListSubHeaderComponent;
-
   @Output ()
   selectUsr: EventEmitter<User> = new EventEmitter ();
+
+  @ContentChild (UserListInfoComponent, {static: false})
+  userListInfo: UserListInfoComponent;
+
+  @ContentChild (UserListSubHeaderComponent, {static: true})
+  userListSubHeader: UserListSubHeaderComponent;
+
+  @ContentChild (UserListHeaderComponent, {static: true})
+  userListHeader: UserListHeaderComponent;
+
+  @ContentChild (UserListHeaderComponent, {static: true, read: ElementRef})
+  userListHeaderRef: ElementRef;
 
   users: User[] = [
     { name: 'Frank Müller', age: 12 },
@@ -36,6 +40,7 @@ export class UserListComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit () {
+    console.log ( this.userListHeader, this.userListSubHeader, this.userListHeaderRef.nativeElement );
   }
 
   onSelectedUsr ( selectedUsr: User ) {
@@ -44,7 +49,7 @@ export class UserListComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit (): void {
-    console.log ( this.header, this.subHeader, this.headerRef.nativeElement );
+    console.log ( this.userListInfo );
   }
 
 }
