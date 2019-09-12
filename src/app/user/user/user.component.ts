@@ -15,6 +15,9 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild ( UserListComponent, { static: true, read: ElementRef } )
   userListRef: ElementRef;
 
+  @ViewChild ( 'helloWorld', { static: true } )
+  paragraphElementRef: ElementRef<HTMLParagraphElement>;
+
   private selectionSub: Subscription;
 
   constructor ( private elemRef: ElementRef, private renderer: Renderer2 ) {
@@ -23,8 +26,10 @@ export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit () { // { static: true }
     // console.log ( this.userList );
     // console.log ( this.userList.selectUsr );
-    console.log ( this.userListRef );
-    this.renderer.setStyle( this.userListRef.nativeElement, 'color', 'red' );
+    // console.log ( this.userListRef );
+    // this.renderer.setStyle( this.userListRef.nativeElement, 'color', 'red' );
+    console.log ( this.paragraphElementRef );
+    this.paragraphElementRef.nativeElement.innerHTML = 'hello world';
   }
 
   ngAfterViewInit (): void { // { static: false }
