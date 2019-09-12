@@ -22,16 +22,16 @@ import { UserListInfoComponent } from './user-list-info/user-list-info.component
 } )
 export class UserListComponent implements OnInit, AfterContentInit {
 
-  @ContentChild ( UserListHeaderComponent )
+  @ContentChild(UserListHeaderComponent, { static: true })
   header: UserListHeaderComponent;
 
-  @ContentChild ( UserListHeaderComponent, {read: ElementRef} )
+  @ContentChild(UserListHeaderComponent, { static: true,  read: ElementRef })
   headerRef: ElementRef;
 
-  @ContentChild ( UserListSubHeaderComponent )
+  @ContentChild(UserListSubHeaderComponent, { static: true })
   subHeader: UserListSubHeaderComponent;
 
-  @ContentChild ( UserListInfoComponent )
+  @ContentChild(UserListInfoComponent, { static: true })
   info: UserListInfoComponent;
 
   @ContentChildren ( UserListInfoComponent )
