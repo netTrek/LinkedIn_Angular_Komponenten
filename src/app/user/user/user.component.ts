@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserListComponent } from '../user-list/user-list.component';
-import { Subscription } from 'rxjs/internal/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component ( {
   selector   : 'in-user',
@@ -9,23 +9,24 @@ import { Subscription } from 'rxjs/internal/Subscription';
 } )
 export class UserComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild(UserListComponent, { static: true })
+  @ViewChild ( UserListComponent, { static: false })
   userList: UserListComponent;
   private selectionSub: Subscription;
 
   constructor () {
   }
 
-  ngOnInit () {
+  ngOnInit () { // { static: true }
+    // console.log ( this.userList );
+    // console.log ( this.userList.selectUsr );
   }
 
-  ngAfterViewInit (): void {
-    this.selectionSub = this.userList.selectUsr.subscribe (
-      next => console.log ( 'selected', next )
-    );
+  ngAfterViewInit (): void { // { static: false }
+    this.selectionSub = this.userList.selectUsr.subscribe( next => console.log ('selected', next ) );
   }
 
   ngOnDestroy (): void {
     this.selectionSub.unsubscribe();
   }
+
 }
